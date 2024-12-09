@@ -11,7 +11,7 @@ def get_params(trial, model_config):
     }
     if model_config.use_gpu:
         params["tree_method"] = "hist"
-        params["device"] = "cuda:0"
+        params["device"] = "cuda"
     else:
         params["tree_method"] = trial.suggest_categorical("tree_method", ["exact", "approx", "hist"])
         params["booster"] = trial.suggest_categorical("booster", ["gbtree", "gblinear"])
