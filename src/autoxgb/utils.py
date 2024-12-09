@@ -157,7 +157,7 @@ def optimize(
                 _m.fit(
                     xtrain,
                     ytrain[:, idx],
-                    early_stopping_rounds=early_stopping_rounds,
+                    #early_stopping_rounds=early_stopping_rounds,
                     eval_set=[(xvalid, yvalid[:, idx])],
                     verbose=False,
                 )
@@ -172,7 +172,7 @@ def optimize(
             model.fit(
                 xtrain,
                 ytrain,
-                early_stopping_rounds=early_stopping_rounds,
+                #early_stopping_rounds=early_stopping_rounds,
                 eval_set=[(xvalid, yvalid)],
                 verbose=False,
             )
@@ -216,13 +216,15 @@ def train_model(model_config):
 
 def predict_model(model_config, best_params):
 
-    early_stopping_rounds = best_params["early_stopping_rounds"]
-    del best_params["early_stopping_rounds"]
+    #early_stopping_rounds = best_params["early_stopping_rounds"]
+    #del best_params["early_stopping_rounds"]
 
     if model_config.use_gpu is True:
-        best_params["tree_method"] = "gpu_hist"
-        best_params["gpu_id"] = 0
-        best_params["predictor"] = "gpu_predictor"
+        # best_params["tree_method"] = "gpu_hist"
+        # best_params["gpu_id"] = 0
+        # best_params["predictor"] = "gpu_predictor"
+        best_params["tree_method"] = "hist"
+        best_params["device"] = "cuda"
 
     xgb_model, use_predict_proba, eval_metric, _ = fetch_xgb_model_params(model_config)
 
