@@ -126,8 +126,8 @@ def optimize(
     model_config,
 ):
     params = get_params(trial, model_config)
-    #early_stopping_rounds = params["early_stopping_rounds"]
-    #del params["early_stopping_rounds"]
+    early_stopping_rounds = params["early_stopping_rounds"]
+    del params["early_stopping_rounds"]
 
     metrics = Metrics(model_config.problem_type)
 
@@ -157,7 +157,7 @@ def optimize(
                 _m.fit(
                     xtrain,
                     ytrain[:, idx],
-                    #early_stopping_rounds=early_stopping_rounds,
+                    early_stopping_rounds=early_stopping_rounds,
                     eval_set=[(xvalid, yvalid[:, idx])],
                     verbose=False,
                 )
@@ -172,7 +172,7 @@ def optimize(
             model.fit(
                 xtrain,
                 ytrain,
-                #early_stopping_rounds=early_stopping_rounds,
+                early_stopping_rounds=early_stopping_rounds,
                 eval_set=[(xvalid, yvalid)],
                 verbose=False,
             )
@@ -216,8 +216,8 @@ def train_model(model_config):
 
 def predict_model(model_config, best_params):
 
-    #early_stopping_rounds = best_params["early_stopping_rounds"]
-    #del best_params["early_stopping_rounds"]
+    early_stopping_rounds = best_params["early_stopping_rounds"]
+    del best_params["early_stopping_rounds"]
 
     if model_config.use_gpu is True:
         # best_params["tree_method"] = "gpu_hist"
@@ -270,7 +270,7 @@ def predict_model(model_config, best_params):
                 _m.fit(
                     xtrain,
                     ytrain[:, idx],
-                    #early_stopping_rounds=early_stopping_rounds,
+                    early_stopping_rounds=early_stopping_rounds,
                     eval_set=[(xvalid, yvalid[:, idx])],
                     verbose=False,
                 )
@@ -303,7 +303,7 @@ def predict_model(model_config, best_params):
             model.fit(
                 xtrain,
                 ytrain,
-                #early_stopping_rounds=early_stopping_rounds,
+                early_stopping_rounds=early_stopping_rounds,
                 eval_set=[(xvalid, yvalid)],
                 verbose=False,
             )
