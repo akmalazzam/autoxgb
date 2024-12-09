@@ -30,11 +30,11 @@ class Metrics:
             }
         elif self.problem_type in (ProblemType.single_column_regression, ProblemType.multi_column_regression):
             self.valid_metrics = {
-                "r2": skmetrics.r2_score,
-                "mse": skmetrics.mean_squared_error,
-                "mae": skmetrics.mean_absolute_error,
-                "rmse": partial(skmetrics.mean_squared_error, squared=False),
-                "rmsle": partial(skmetrics.mean_squared_log_error, squared=False),
+                #"r2": skmetrics.r2_score,
+                #"mse": skmetrics.mean_squared_error,
+                #"mae": skmetrics.mean_absolute_error,
+                "rmse": skmetrics.r2_score, #partial(skmetrics.mean_squared_error, squared=False),
+                #"rmsle": partial(skmetrics.mean_squared_log_error, squared=False),
             }
         elif self.problem_type == ProblemType.multi_label_classification:
             self.valid_metrics = {
