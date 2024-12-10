@@ -105,12 +105,12 @@ def fetch_xgb_model_params(model_config):
     elif model_config.problem_type == ProblemType.single_column_regression:
         xgb_model = xgb.XGBRegressor
         use_predict_proba = False
-        direction = "minimize"
+        direction = "maximize"
         eval_metric = "rmse"
     elif model_config.problem_type == ProblemType.multi_column_regression:
         xgb_model = xgb.XGBRegressor
         use_predict_proba = False
-        direction = "minimize"
+        direction = "maximize"
         eval_metric = "rmse"
     else:
         raise NotImplementedError
