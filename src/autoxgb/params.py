@@ -8,6 +8,7 @@ def get_params(trial, model_config):
         "max_depth": trial.suggest_int("max_depth", 1, 9),
         "early_stopping_rounds": trial.suggest_int("early_stopping_rounds", 100, 500),
         "n_estimators": trial.suggest_categorical("n_estimators", [7000, 15000, 20000]),
+        "objective": "reg:pseudohubererror",  # Huber loss for regression
     }
     if model_config.use_gpu:
         params["tree_method"] = "hist"
